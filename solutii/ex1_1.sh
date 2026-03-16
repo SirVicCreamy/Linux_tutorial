@@ -1,4 +1,4 @@
-echo "E1 USOR , ex1_1.sh - Explorare si navigare sistem de fisiere:"
+echo "E1 USOR, ex1_1.sh - Explorare si navigare sistem de fisiere:"
 echo "1."
  pwd
 echo "2."
