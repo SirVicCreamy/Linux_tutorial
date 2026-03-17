@@ -14,3 +14,10 @@ echo "5:"
 touch ~/lab-linux/date/temp_{01..05}.txt && rm ~/lab-linux/date/temp_*.txt
 echo "6:"
 cp -r ~/lab-linux/date/ ~/lab-linux/date_backup
+echo "7:"
+#ls -lh  ~/lab-linux/date
+#ls -lh  ~/lab-linux/date_backup
+#asa am gandit eu dar nu e bine, ca doar imi listea practic, nu imi numara  fisierele din date/date_backup
+ls ~/lab-linux/date | wc -l
+ls ~/lab-linux/date_backup | wc -l
+#m am ajutat de Gemeni, am gasit formula in pdf dar nu ma gandeam ca trebuie sa pun si ls.
