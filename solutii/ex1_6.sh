@@ -12,7 +12,7 @@ cat ~/lab-linux/date/erori.txt
 echo " "
 echo " "
 echo "3:"
-touch ~/lab-linux/demo/raport_demo.txt | ls -lhS
+ls -lhS ~/lab-linux/demo/ > ~/lab-linux/demo/raport_demo.txt
 echo " "
 echo " "
 echo "4:"
@@ -25,4 +25,4 @@ tail -n +2 ~/lab-linux/demo/angajati.csv | cut -d ',' -f3 | sort | uniq -c | sor
 echo " "
 echo " "
 echo "6:"
-head -n 5 ~/lab-linux/demo/produse.csv | tee  
+head -n 5 ~/lab-linux/demo/produse.csv | tee ~/lab-linux/demo/head_produse.txt
