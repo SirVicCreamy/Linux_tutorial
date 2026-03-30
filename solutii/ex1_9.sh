@@ -16,7 +16,7 @@ find ~/lab-linux/restore/home/decebal/lab-linux/demo/ -type f | wc -l
 echo
 echo "5:"
 tar czf ~/lab-linux/csv_only.tar.gz ~/lab-linux/demo/*.csv
-echo
+echo " 23132"
 echo "6:"
 TIMESTAMP=$(date +%Y%m%d_%H%M)
 tar czf ~/lab-linux/backup_${TIMESTAMP}.tar.gz ~/lab-linux/
