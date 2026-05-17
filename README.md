@@ -1,64 +1,120 @@
-# Linux Tutorial — Data Engineering & Analytics Nivel 1
+# Examen Practic — Sistem & Programare
 
-> Repository gestionat de **Ing. Aldica Victor-Mihai** | Data Engineer @ ING Hubs
+> Repository gestionat de **Ing. Aldica Victor-Mihai**  
+> Fiecare student lucrează pe propriul branch — **nu se comite pe `main`**.
 
-## Structura repository
+---
+
+
+---
+
+## Structura așteptată pe branch-ul tău
 
 ```
-Linux_tutorial/
-├── demo/                     ← Fisierele de date pentru exercitii (read-only)
-│   ├── tranzactii.csv        col: id,client,categorie,suma,data,metoda_plata
-│   ├── angajati.csv          col: id,nume,departament,salariu,data_angajare,oras
-│   ├── produse.csv           col: id,nume_produs,categorie,pret,furnizor,stoc
-│   ├── app.log               format: TIMESTAMP NIVEL [serviciu] mesaj
-│   ├── server_access.log     format: Apache Combined Log (col.9=status)
-│   ├── config_app.txt        format: cheie=valoare cu comentarii #
-│   └── useri.txt             format: /etc/passwd
-├── scripts/
-│   ├── setup_student.sh      ← Ruleaza O SINGURA DATA la inceput
-│   └── generate_data.sh      ← Genereaza sistem_mare.log (200 linii)
-└── student/PRENUME-NUME/     ← Branch-ul fiecarui student (creat de setup_student.sh)
-    ├── solutii/              ex1_N.sh, ex2_N.sh, ex3_N.sh
-    └── boss_fight/           downloads_manager.sh
+Linux_tutorial/               ← rădăcina repo-ului
+├── ex01/
+│   └── ex01_perms.sh
+├── ex02/
+│   └── ex02_procese.sh
+├── ex03/
+│   └── ex03_storage.sh
+├── ex04/
+│   └── ex04_filops.sh
+├── ex05/
+│   └── ex05_greet.sh
+├── ex06/
+│   └── ex06_grep.sh
+├── ex07/
+│   ├── ex07_fix.c
+│   └── BUGS.md
+├── ex08/
+│   └── ex08_calc.c
+├── ex09/
+│   └── ex09_arhiva.sh
+├── ex10/
+│   └── ex10_find.sh
+└── .gitignore
 ```
 
-## Setup rapid (studenti)
+---
+
+## Exemplu concret — cum arată un branch corect
+
+### Structura de fișiere
+
+```
+$ git checkout examen_ion-popescu
+$ find . -not -path './.git/*' | sort
+
+./.gitignore
+./ex01/ex01_perms.sh
+./ex02/ex02_procese.sh
+./ex03/ex03_storage.sh
+./ex04/ex04_filops.sh
+./ex05/ex05_greet.sh
+./ex06/ex06_grep.sh
+./ex07/BUGS.md
+./ex07/ex07_fix.c
+./ex08/ex08_calc.c
+./ex09/ex09_arhiva.sh
+./ex10/ex10_find.sh
+```
+
+### Exemplu .gitignore
+
+```gitignore
+# Binare compilate
+ex07
+ex08
+*.o
+
+# Artefacte temporare
+/tmp/
+*.tar.gz
+*.zip
+```
+
+### Exemplu ex01_perms.sh (primele linii)
 
 ```bash
-# 1. Cloneaza
-git clone https://github.com/SirVicCreamy/Linux_tutorial
-cd Linux_tutorial
+#!/usr/bin/env bash
+set -euo pipefail
 
-# 2. Configureaza identitatea Git si ruleaza setup-ul
-git config --global user.name "Prenume Nume"
-git config --global user.email "email@example.com"
-bash scripts/setup_student.sh "Prenume Nume"
-
-# 3. Publica branch-ul (necesita PAT GitHub, nu parola contului)
-git push -u origin student/prenume-nume
+ORIGINAL_UMASK=$(umask)
+BASE="/tmp/ex1_${USER}"
+# ... restul solutiei
 ```
 
-## Format log (app.log si sistem_mare.log)
+## Reguli obligatorii
 
+| Regulă | Penalizare |
+|--------|-----------|
+| Branch nenumit `examen_<nume>` | fișierele nu pot fi evaluate |
+| Fișier `.sh` fără shebang sau fără `chmod +x` | −0.5p |
+| Fișier `.c` cu warning-uri la `-Wall -Wextra` | −1p per warning |
+| Fișier cu numele greșit (ex. `ex01.sh` în loc de `ex01_perms.sh`) | −1p |
+| Artefacte de build comise (`*.o`, binare) | −2p total |
+| Lipsă `.gitignore` | −0.5p |
+| Lipsă commit pentru un exercițiu | −1p |
+
+---
+
+## Verificare înainte de trimitere
+
+```bash
+# Esti pe branch-ul corect?
+git branch --show-current
+# -> examen_prenume-nume
+
+# Toate fisierele sunt comise?
+git status
+# -> nothing to commit, working tree clean
+
+# Branch-ul este publicat?
+git log origin/examen_prenume-nume..HEAD
+# -> (gol = esti sincronizat)
+
+# Scripturile au bit de executie?
+find . -name "*.sh" -not -executable -not -path './.git/*'
+# -> (gol = toate sunt executabile)
 ```
-2026-02-17T09:31:55 ERROR   [payment-service] Payment gateway unreachable: HTTP 503
-│                   │        │                 │
-$1 (timestamp)     $2       $3 ([serviciu])  $4+ (mesaj)
-```
-
-Coloana `$2` = nivel (`INFO`/`DEBUG`/`WARN`/`ERROR`)  
-Coloana `$3` = serviciu (format `[name]`)
-
-## Format server_access.log
-
-```
-192.168.1.10 - - [17/Feb/2026:09:15:23 +0000] "GET /api/users HTTP/1.1" 200 4823
-                                                                           │
-                                                                          $9 = status code
-```
-
-## Reguli pentru studenti
-
-- **Nu** comite direct pe `main` — branch-ul tau este `student/prenume-nume`
-- Format commit: `feat: ex1_1 descriere-fara-diacritice`
-- Ia mereu ultimele fisiere demo: `git pull origin main`
