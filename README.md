@@ -81,7 +81,7 @@ ex08
 set -euo pipefail
 
 ORIGINAL_UMASK=$(umask)
-BASE="/tmp/ex1/"
+BASE="/tmp/ex01/"
 # ... restul solutiei
 ```
 
