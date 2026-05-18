@@ -12,17 +12,17 @@ static void usage(FILE *out) {
 
 /* --- TODO 1 [1.5p]: returneaza minimul din v[0..n-1] ----------------------- */
 double calc_min(double *v, int n) {
-
+	return calc_min;
 }
 
 /* --- TODO 2 [1.5p]: returneaza maximul din v[0..n-1] ----------------------- */
 double calc_max(double *v, int n) {
-
+	return calc_max;
 }
 
 /* --- TODO 3 [1.5p]: returneaza media aritmetica din v[0..n-1] -------------- */
 double calc_avg(double *v, int n) {
-
+	return calc_avg;
 }
 
 int main(int argc, char *argv[]) {
