@@ -31,8 +31,7 @@ case "$LIMBA" in
     ro|en)
         ;;
     *)
-    echo "Limba este gresita" !=$1|!=$2
-	exit 1    # TODO: adauga mesajul de eroare si exit-ul
+        # TODO: adauga mesajul de eroare si exit-ul
         ;;
 esac
 
@@ -41,16 +40,16 @@ esac
 
 
 # --- TODO 3 [1p]: construieste data si ora cu $(date +FORMAT) ----------------
-DATA=$(date +%d.%m.%Y)
-ORA=$(hour +%h.%m.%s)
+DATA=
+ORA=
 
 # --- TODO 4 [3p]: construieste mesajul cu case pe LIMBA ----------------------
- ro: "Salut, $1! Azi este $(date +%d.%m.%Y)  ora ORA=$(hour +%h.%m.%s)."
-# en: "Hello, $2! Today is $(date +%d.%m.%Y), ORA=$(hour +%h.%m.%s)."
+# ro: "Salut, <NUME>! Azi este <DATA>, ora <ORA>."
+# en: "Hello, <NUME>! Today is <DATA>, <ORA>."
 SALUT=
 case "$LIMBA" in
     ro)
-       # TODO: seteaza SALUT
+        # TODO: seteaza SALUT
         ;;
     en)
         # TODO: seteaza SALUT
