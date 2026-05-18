@@ -31,7 +31,8 @@ case "$LIMBA" in
     ro|en)
         ;;
     *)
-        # TODO: adauga mesajul de eroare si exit-ul
+        echo "EROARE" 
+	exit 0;
         ;;
 esac
 
